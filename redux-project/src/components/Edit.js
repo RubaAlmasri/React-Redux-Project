@@ -23,22 +23,26 @@ export default function Edit() {
         setoverview(localStorage.getItem('overview'));
     }, []);
 
-    const { isLoading, movies } = useSelector((state) => state.movies);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(insertMovies());
-    }, [dispatch]);
+    // const { isLoading, movies } = useSelector((state) => state.movies);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //     dispatch(insertMovies());
+    // }, [dispatch]);
 
     const updateAPIData = () => {
+        axios.put(`https://62baba8b573ca8f83289f6c8.mockapi.io/movies/${id}`, {
+            original_title,
+            overview,
+        })
 
-        const data = {
-            id:id,
-            original_title: original_title,
-            poster_path: poster_path,
-            overview: overview,
-        }
-        // console.log(original_title.current.value);
-        dispatch(insertMovies(data));
+        // const data = {
+        //     id:id,
+        //     original_title: original_title,
+        //     poster_path: poster_path,
+        //     overview: overview,
+        // }
+        // // console.log(original_title.current.value);
+        // dispatch(insertMovies(data));
 
     };
 
@@ -49,15 +53,15 @@ export default function Edit() {
                 {/* <form> */}
                 <div class="mb-3 w-50">
                     <label class="form-label">Movie Name</label>
-                    <input type="text" class="form-control" value={original_title} onChange={(e) => setoriginal_title(e.target.value)} required ></input>
+                    <input type="text" class="form-control" value={original_title} onChange={(e) => setoriginal_title(e.target.value)}></input>
                 </div>
                 <div class="mb-3 w-50">
                     <label class="form-label">Movie Image</label>
-                    <input type="file" class="form-control" value={poster_path} onChange={(e) => setposter_path(e.target.value)} required ></input>
+                    <input type="file" class="form-control" onChange={(e) => setposter_path(e.target.value)} ></input>
                 </div>
                 <div class="mb-3 w-50">
                     <label class="form-label">Movie Description</label>
-                    <textarea class="form-control" value={overview} onChange={(e) => setoverview(e.target.value)} required ></textarea>
+                    <textarea class="form-control" value={overview} onChange={(e) => setoverview(e.target.value)} ></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" onClick={updateAPIData}>Save</button>
                 <a href='/dashboard' class='btn btn-secondary m-2'>Back</a>

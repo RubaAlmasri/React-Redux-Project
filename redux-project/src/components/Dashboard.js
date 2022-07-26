@@ -12,6 +12,7 @@ const Dashboard = ({ isLoading, movies, dispatch, deleteMovies }) => {
 
 
     const handleedit = (data) => {
+        console.log(data);
 
         let { id, original_title, poster_path, overview } = data;
         localStorage.setItem('original_title', original_title);
@@ -38,8 +39,8 @@ const Dashboard = ({ isLoading, movies, dispatch, deleteMovies }) => {
             <Navbar />
             <br /><br /><br />
 
-            {
-                isLoading ? ('Loading...') : (
+            {/* {
+                isLoading ? ('Loading...') : ( */}
                     <>
 
                         <a class="btn btn-primary" href="/add">Add Movie</a><br /><br />
@@ -76,8 +77,8 @@ const Dashboard = ({ isLoading, movies, dispatch, deleteMovies }) => {
                             </table>
                         </div>
                     </>
-                )
-            }
+                {/* )
+            } */}
 
         </>
     );
